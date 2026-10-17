@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #0e1116;
+  --color-ink-2: #151a22;
+  --color-line: #2a3140;
+  --color-mist: #f5f7fa;
+  --color-muted: #8a93a3;
+  --color-soft: #c9d0db;
+  --color-brand: #3ddc84;
+  --color-brand-dark: #1fa860;
+  --font-sans: var(--font-dm-sans);
+  --font-display: var(--font-bricolage);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-mist);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details[open] .faq-plus {
+  transform: rotate(45deg);
+}
