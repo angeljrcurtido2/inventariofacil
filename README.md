@@ -31,3 +31,6 @@ Sin Git: arrastrar la carpeta `out/` a Netlify → Deploys.
 - `.github/workflows/publicar.yml` le pide a Netlify que recompile martes y viernes 09:00 (Paraguay). Ahí aparece lo que toca.
 - Para sumar artículos: agregar objetos al final de `blog-cola.ts` con la próxima fecha libre (martes o viernes), y hacer `git push`.
 - Probar la programación en local: `PUBLICAR_HASTA=2026-11-30 npm run build`.
+
+### Quién publica (actualizado)
+La publicación programada la hace una tarea de Windows en la computadora de oficina (`scripts/publicar.ps1`, martes y viernes 09:00): si hay artículos cuya fecha ya llegó, hace `git push` y Netlify recompila. El registro queda en `scripts/publicar.log`. Si la computadora estaba apagada, la tarea se ejecuta apenas se prende. El flujo de GitHub (`publicar.yml`) quedó solo como respaldo manual.
