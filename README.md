@@ -23,3 +23,11 @@ Lighthouse (móvil, prueba local sin compresión): Accesibilidad 100, Buenas pr�
 ## Publicar en Netlify
 Con Git: Build command `npm run build`, Publish directory `out`.
 Sin Git: arrastrar la carpeta `out/` a Netlify → Deploys.
+
+## Publicación automática de contenido
+
+- Los artículos del blog viven en `src/config/blog.ts` (ya publicados) y `src/config/blog-cola.ts` (programados).
+- Cada artículo tiene una `fecha`. El sitio solo muestra los que ya la cumplieron.
+- `.github/workflows/publicar.yml` le pide a Netlify que recompile martes y viernes 09:00 (Paraguay). Ahí aparece lo que toca.
+- Para sumar artículos: agregar objetos al final de `blog-cola.ts` con la próxima fecha libre (martes o viernes), y hacer `git push`.
+- Probar la programación en local: `PUBLICAR_HASTA=2026-11-30 npm run build`.

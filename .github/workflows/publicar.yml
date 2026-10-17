@@ -1,0 +1,21 @@
+# Publicación automática de los artículos programados (src/config/blog-cola.ts).
+# Cada artículo tiene una fecha; el sitio solo muestra los que ya la cumplieron. Este flujo le pide a Netlify
+# que recompile el sitio martes y viernes a las 09:00 (hora de Paraguay, UTC-3), y así aparece lo que corresponde.
+# Configuración de una sola vez: en Netlify creá un "Build hook" y guardalo en GitHub como secreto NETLIFY_BUILD_HOOK.
+name: Publicar contenido programado
+
+on:
+  schedule:
+    - cron: "0 12 * * 2,5"
+  workflow_dispatch: {}
+
+jobs:
+  recompilar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pedirle a Netlify que recompile el sitio
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK" ]; then echo "Falta el secreto NETLIFY_BUILD_HOOK"; exit 1; fi
+          curl -fsS -X POST -d '{}' "$NETLIFY_BUILD_HOOK"

@@ -1,5 +1,7 @@
 // Artículos del blog (/blog/<slug>). Para publicar uno nuevo: agregá un objeto al INICIO de la lista, con su fecha real,
 // y volvé a compilar. Escribí para una persona con un negocio, no para Google: respondé una pregunta concreta, con ejemplos.
+import { COLA } from "./blog-cola";
+
 export type Bloque =
   | { t: "h2"; x: string }
   | { t: "p"; x: string }
@@ -21,7 +23,7 @@ export type Articulo = {
   cuerpo: Bloque[];
 };
 
-export const ARTICULOS: Articulo[] = [
+const BASE: Articulo[] = [
   {
     slug: "controlar-el-fiado",
     tituloSeo: "Cómo controlar el fiado en tu negocio",
@@ -134,5 +136,14 @@ export const ARTICULOS: Articulo[] = [
     ],
   },
 ];
+
+/** Hoy en Paraguay (AAAA-MM-DD). Se puede forzar con PUBLICAR_HASTA para probar la programación. */
+const hoyPy = () => process.env.PUBLICAR_HASTA ?? new Date().toLocaleDateString("sv-SE", { timeZone: "America/Asuncion" });
+
+/** Todos los artículos escritos, publicados o no. */
+export const TODOS: Articulo[] = [...BASE, ...COLA];
+
+/** Solo los que ya cumplieron su fecha, el más nuevo primero. El sitio se recompila martes y viernes (ver .github/workflows). */
+export const ARTICULOS: Articulo[] = TODOS.filter((a) => a.fecha <= hoyPy()).sort((a, b) => (a.fecha < b.fecha ? 1 : a.fecha > b.fecha ? -1 : 0));
 
 export const articuloPorSlug = (slug: string) => ARTICULOS.find((a) => a.slug === slug);

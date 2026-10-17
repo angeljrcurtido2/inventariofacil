@@ -1,0 +1,7 @@
+# Netlify compila el sitio con estos datos cada vez que se sube un cambio y cada martes y viernes (ver .github/workflows/publicar.yml).
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
