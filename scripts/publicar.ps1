@@ -37,7 +37,11 @@ try {
   # Aviso de cola corta: cuando quedan pocos articulos programados, avisa en pantalla y deja un archivo en el Escritorio.
   $umbral = 4
   $aviso = Join-Path ([Environment]::GetFolderPath('Desktop')) 'AVISO_inventariofacil_escribir_articulos.txt'
-  if ($pendientes -le $umbral) {
+  if ($pendientes -le $umbral -and -not $SoloProbar) {
+    # Quedan pocos articulos: Claude escribe la proxima tanda (se valida y se sube sola; si falla, avisa).
+    Log "Quedan $pendientes articulos programados: se escribe una nueva tanda."
+    & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'escribir_tanda.ps1') | Out-Null
+  } elseif ($pendientes -le $umbral) {
     $ultimaFecha = ($fechas | Sort-Object | Select-Object -Last 1)
     $texto = "Quedan $pendientes articulos programados en el blog de inventariofacil.site (el ultimo sale el $ultimaFecha).`r`n`r`nPara que el sitio no se quede sin contenido:`r`n1) Abri Claude Code.`r`n2) Decile: escribi la siguiente tanda de articulos para el blog de inventariofacil.`r`n3) Lee los articulos, y decile que los suba."
     Set-Content -Path $aviso -Value $texto -Encoding UTF8
