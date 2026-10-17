@@ -32,7 +32,29 @@ try {
     Git "commit -m `"Publicar contenido programado hasta $vencida`"" | Out-Null
     Git 'push origin main' | Out-Null
     Log "Publicado hasta $vencida y enviado a GitHub. Programados a futuro: $pendientes."
-    if ($pendientes -le 2) { Log "AVISO: quedan $pendientes articulos programados. Hay que escribir mas." }
+  }
+
+  # Aviso de cola corta: cuando quedan pocos articulos programados, avisa en pantalla y deja un archivo en el Escritorio.
+  $umbral = 4
+  $aviso = Join-Path ([Environment]::GetFolderPath('Desktop')) 'AVISO_inventariofacil_escribir_articulos.txt'
+  if ($pendientes -le $umbral) {
+    $ultimaFecha = ($fechas | Sort-Object | Select-Object -Last 1)
+    $texto = "Quedan $pendientes articulos programados en el blog de inventariofacil.site (el ultimo sale el $ultimaFecha).`r`n`r`nPara que el sitio no se quede sin contenido:`r`n1) Abri Claude Code.`r`n2) Decile: escribi la siguiente tanda de articulos para el blog de inventariofacil.`r`n3) Lee los articulos, y decile que los suba."
+    Set-Content -Path $aviso -Value $texto -Encoding UTF8
+    Log "AVISO: quedan $pendientes articulos programados. Se dejo $aviso y se mostro la notificacion."
+    try {
+      Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+      $n = New-Object System.Windows.Forms.NotifyIcon
+      $n.Icon = [System.Drawing.SystemIcons]::Information
+      $n.BalloonTipTitle = 'inventariofacil.site: hay que escribir mas articulos'
+      $n.BalloonTipText = "Quedan $pendientes programados. Abri Claude Code y pedile la siguiente tanda."
+      $n.Visible = $true
+      $n.ShowBalloonTip(20000)
+      Start-Sleep -Seconds 21
+      $n.Dispose()
+    } catch { Log "No se pudo mostrar la notificacion: $_" }
+  } elseif (Test-Path $aviso) {
+    Remove-Item $aviso -Force   # ya se cargaron mas articulos: se borra el recordatorio
   }
 } catch {
   Log "ERROR: $_"
