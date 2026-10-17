@@ -77,9 +77,10 @@ try {
   if (($ultimas -join ',') -ne ($nuevas -join ',')) { throw "Las fechas de los articulos nuevos no coinciden con las pedidas." }
   $slugs = [regex]::Matches($cola, '(?m)^\s+slug: "([^"]+)"') | ForEach-Object { $_.Groups[1].Value }
   if (($slugs | Select-Object -Unique).Count -ne $slugs.Count) { throw 'Hay slugs repetidos.' }
-  $prohibidas = 'SIFEN|factura electr|iPhone|iOS\b|sin internet|offline|pasarela|tarjeta de cr.dito integrada|aumenta(s|ra)? tus ventas|garantiz'
+  $prohibidas = 'SIFEN|factura electr|sin internet|offline|pasarela|tarjeta de cr.dito integrada|aumenta(s|ra)? tus ventas|garantiz'
   $nuevoTexto = $cola.Substring($cola.IndexOf($slugs[$slugs.Count - $N]) - 20)
   $m = [regex]::Match($nuevoTexto, $prohibidas, 'IgnoreCase')
+  if (-not $m.Success) { $m = [regex]::Match($nuevoTexto, '\b(iOS|iPhone|iPad)\b') }
   if ($m.Success) { throw "Aparece una frase prohibida en los articulos nuevos: '$($m.Value)'." }
   if ($nuevoTexto.Length -lt $N * 2500) { throw 'Los articulos nuevos son demasiado cortos.' }
 
@@ -92,7 +93,7 @@ try {
   Remove-Item Env:PUBLICAR_HASTA -ErrorAction SilentlyContinue
 
   # 6) Publicar (o deshacer si es prueba).
-  if ($SoloProbar) { Deshacer; Log "PRUEBA OK: se escribieron y validaron $N articulo(s) ($($slugs[-$N..-1] -join ', ')). Se deshizo todo."; exit 0 }
+  if ($SoloProbar) { Set-Content -Path (Join-Path $PSScriptRoot 'ultima_prueba.txt') -Value $nuevoTexto -Encoding UTF8; Deshacer; Log "PRUEBA OK: se escribieron y validaron $N articulo(s) ($($slugs[-$N..-1] -join ', ')). Se deshizo todo."; exit 0 }
   Git "add src/config/blog-cola.ts TEMAS_PENDIENTES.md" | Out-Null
   Git "commit -m `"Blog: nueva tanda de $N articulos programados ($($nuevas[0]) a $($nuevas[-1]))`"" | Out-Null
   Git 'push origin main' | Out-Null
