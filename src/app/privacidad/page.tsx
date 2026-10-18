@@ -19,6 +19,9 @@ export default function Privacidad() {
         <p>Los datos de tu cuenta (nombre, usuario, correo y teléfono) y la información que cargás en el sistema: productos, ventas, compras, clientes, proveedores, caja y personal.</p>
         <h2 className="font-display text-2xl font-extrabold text-white">Cómo los usamos</h2>
         <p>Solo para que el sistema funcione y para darte soporte. No vendemos tus datos ni los compartimos con terceros con fines publicitarios. La información de cada cuenta está separada y solo la ve el titular y los usuarios que él autorice.</p>
+        <h2 className="font-display text-2xl font-extrabold text-white">Mi Despensa (versión gratuita) e inicio de sesión con Google</h2>
+        <p>Mi Despensa es la versión gratuita de nuestro sistema para almacenes y despensas. Si elegís «Continuar con Google», Google nos confirma tu identidad y recibimos únicamente tu nombre y tu correo electrónico, que usamos para crear o abrir tu cuenta. No recibimos tu contraseña de Google ni accedemos a tu correo, tus contactos, tus archivos ni a ningún otro dato de tu cuenta de Google.</p>
+        <p>Usamos ese nombre y ese correo solo para identificarte dentro del sistema y para darte soporte. No los vendemos ni los compartimos con terceros con fines publicitarios. Podés pedir la baja de tu cuenta y de tus datos cuando quieras escribiéndonos.</p>
         <h2 className="font-display text-2xl font-extrabold text-white">Fotos y funciones con IA</h2>
         <p>Cuando usás una función con foto, como cargar una factura o un producto, la imagen se envía para extraer los datos y se usa solo para esa tarea. La cámara del celular solo se usa para escanear códigos de barras y tomar esas fotos.</p>
         <h2 className="font-display text-2xl font-extrabold text-white">Seguridad y eliminación</h2>
