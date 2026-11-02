@@ -41,8 +41,12 @@ Para retomar: abrir Claude Code en esta carpeta y decir "leé CONTEXTO_PROYECTO.
 - Commit `4a6659e`: título "Inventario Fácil | A.C System: ...", descripción, keywords y JSON-LD (alternateName) con "Inventario Fácil". Desplegado en Netlify.
 - Solicitada la indexación de la portada en Search Console (URL en Google, título nuevo pendiente de relectura).
 
+- Solicitada también la indexación de /blog. Las únicas 2 URLs "descubiertas sin indexar" son /blog y /privacidad; todos los artículos y rubros ya están indexados.
+- IndexNow (Bing/Yandex): `public/f56096266fee73596009014e58431c2c.txt` (llave) + `scripts/indexnow.ps1`, llamado por publicar.ps1 tras cada publicación; registra lo enviado en scripts/indexnow_enviadas.txt (gitignored). Primer envío: 17 URLs, HTTP 202.
+- Google no usa IndexNow; a Google lo descubre por el sitemap. No se automatizó "Solicitar indexación" (solo existe en la interfaz de Search Console y exige el navegador conectado).
+
 ## 5. Pendientes / ideas
-- [ ] Solicitar indexación de los artículos nuevos y de /blog, /sistema-para/* (cuota diaria limitada, ~10 por día).
+- [ ] Dar de alta el sitio en Bing Webmaster Tools (importar desde Search Console) para ver datos de Bing.
 - [ ] Enlaces externos: ficha de Play Store, Facebook, Instagram, Google Business (los hace el usuario).
 - [ ] `inventariofacil.shop`: agregar `robots.txt` real y `noindex` (o apuntar al .site). Proyecto aparte; requiere OK.
 - [ ] Enlaces externos: ficha de Play Store, Facebook, Instagram, Google Business.
