@@ -45,13 +45,29 @@ Para retomar: abrir Claude Code en esta carpeta y decir "leé CONTEXTO_PROYECTO.
 - IndexNow (Bing/Yandex): `public/f56096266fee73596009014e58431c2c.txt` (llave) + `scripts/indexnow.ps1`, llamado por publicar.ps1 tras cada publicación; registra lo enviado en scripts/indexnow_enviadas.txt (gitignored). Primer envío: 17 URLs, HTTP 202.
 - Google no usa IndexNow; a Google lo descubre por el sitemap. No se automatizó "Solicitar indexación" (solo existe en la interfaz de Search Console y exige el navegador conectado).
 
+- Bing Webmaster Tools: el usuario importó el sitio desde Search Console; se envió el sitemap `https://www.inventariofacil.site/sitemap.xml` (estado "Procesando", 0 URLs al 2026-11-02; los datos tardan hasta 48 h).
+- Decisión del usuario: NO quiere usar redes sociales. Google Business Profile es gratis (no es publicidad) pero solo conviene si hay dirección o zona de atención en Paraguay; no hay dirección confirmada.
+- No se crean cuentas, directorios ni comentarios con enlaces a nombre del usuario (requieren cuenta/formulario y los comentarios con enlace son spam).
+
 ## 5. Pendientes / ideas
-- [ ] Dar de alta el sitio en Bing Webmaster Tools (importar desde Search Console) para ver datos de Bing.
+- [ ] **Revisión a los 30 días (~2026-12-02):** Search Console (impresiones, clics, posición, si aparece "inventariofacil") y Bing (sitemap, URLs descubiertas). Comparar con las estimaciones de abajo.
+- [ ] Play Store: poner la web en el campo de sitio web de la ficha (5 min, lo hace el usuario).
+- [ ] Pasar el enlace por WhatsApp a clientes; poner la web en facturas/tickets; subir tutoriales a YouTube con enlace; registrarse en 2-3 directorios de Paraguay.
 - [ ] Enlaces externos: ficha de Play Store, Facebook, Instagram, Google Business (los hace el usuario).
 - [ ] `inventariofacil.shop`: agregar `robots.txt` real y `noindex` (o apuntar al .site). Proyecto aparte; requiere OK.
 - [ ] Enlaces externos: ficha de Play Store, Facebook, Instagram, Google Business.
 - [ ] Medir con búsquedas de intención: "sistema de ventas Paraguay", "control de stock para almacén", no solo la marca.
 - [ ] Decidir si actualizar Next.js (aviso de seguridad de versión 16.4.0). Decisión del usuario; la compilación pide correr `next upgrade --agent=security`, no se hizo.
+
+## Estimaciones (2026-11-02, orientativas, no promesas)
+Base: 59 impresiones, 2 clics, posición media 29 en 3 semanas; 2 artículos nuevos por semana.
+- 1-2 meses: 200-800 impresiones/mes, 5-30 clics.
+- 3-4 meses: 1.000-4.000 impresiones, 30-150 clics.
+- 6 meses: 3.000-10.000 impresiones, 100-400 clics.
+- 12 meses: 10.000-40.000 impresiones, 400-1.800 clics.
+- Búsqueda "inventariofacil" en primera página: 1-3 meses (confianza media, compite una app de iPhone con nombre parecido).
+- Contactos por WhatsApp típicos: 1-3% de las visitas; a 6 meses ~2-5 contactos/mes, 0-1 venta; a 12 meses ~10-25 contactos, 2-6 ventas.
+- Lo que más las mueve: enlaces externos, artículos sobre búsquedas reales de Paraguay, constancia.
 
 ## 6. Conectar Claude con el navegador (para revisar Search Console)
 - El usuario usa **Brave** (basado en Chromium) con la extensión "Claude" instalada con acceso completo.
