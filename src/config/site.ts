@@ -2,9 +2,10 @@
 // editá este archivo (o las variables NEXT_PUBLIC_* en Netlify) y volvé a compilar.
 export const SITE = {
   name: "A.C System",
+  alternateName: "Inventario Fácil",
   tagline: "Todo tu negocio en una sola app",
   description:
-    "Sistema de gestión para comercios en Paraguay: ventas, stock, caja, cobro de deudas, ofertas, flyers y facturas con foto e IA. En celular y computadora, con tus datos seguros en la nube.",
+    "Inventario Fácil (A.C System): sistema de gestión para comercios en Paraguay: ventas, stock, caja, cobro de deudas, ofertas, flyers y facturas con foto e IA. En celular y computadora, con tus datos seguros en la nube.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.inventariofacil.site",
   appUrl: process.env.NEXT_PUBLIC_APP_URL ?? "https://app.inventariofacil.shop",
   playStoreUrl:

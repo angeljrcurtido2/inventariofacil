@@ -6,13 +6,13 @@ import { SITE } from "@/config/site";
 const display = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-bricolage", weight: ["700", "800"], display: "swap" });
 const sans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", weight: ["400", "500", "700"], display: "swap" });
 
-const titulo = `${SITE.name} | Sistema de ventas, stock y caja para tu negocio en Paraguay`;
+const titulo = `Inventario Fácil | ${SITE.name}: sistema de ventas, stock y caja en Paraguay`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: titulo, template: `%s | ${SITE.name}` },
   description: SITE.description,
-  applicationName: SITE.name,
+  applicationName: `${SITE.alternateName} - ${SITE.name}`,
   keywords: [
     "sistema de ventas Paraguay",
     "sistema de gestión para comercios",
