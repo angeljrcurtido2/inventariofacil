@@ -32,6 +32,8 @@ try {
     Git "commit -m `"Publicar contenido programado hasta $vencida`"" | Out-Null
     Git 'push origin main' | Out-Null
     Log "Publicado hasta $vencida y enviado a GitHub. Programados a futuro: $pendientes."
+    # Aviso a Bing/Yandex (espera a que Netlify despliegue); si falla no afecta la publicacion.
+    try { & powershell -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'indexnow.ps1') | Out-Null } catch { }
   }
 
   # Aviso de cola corta: cuando quedan pocos articulos programados, avisa en pantalla y deja un archivo en el Escritorio.
