@@ -89,6 +89,11 @@ try {
   cmd /c "npx tsc --noEmit 2>&1" | Out-Null
   if ($LASTEXITCODE -ne 0) { throw 'Error de tipos (tsc) en los articulos nuevos.' }
   cmd /c "npm run build 2>&1" | Out-Null
+  if ($LASTEXITCODE -ne 0) {
+    # Next.js frena la primera compilacion con un aviso de seguridad por version desactualizada y deja pasar el reintento.
+    Log 'La primera compilacion se detuvo (aviso de Next.js); se reintenta una vez.'
+    cmd /c "npm run build 2>&1" | Out-Null
+  }
   if ($LASTEXITCODE -ne 0) { throw 'La compilacion del sitio fallo con los articulos nuevos.' }
   Remove-Item Env:PUBLICAR_HASTA -ErrorAction SilentlyContinue
 
