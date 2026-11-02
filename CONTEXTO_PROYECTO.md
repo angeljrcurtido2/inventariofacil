@@ -35,16 +35,21 @@ Para retomar: abrir Claude Code en esta carpeta y decir "leé CONTEXTO_PROYECTO.
 3. Dominio nuevo (~1 mes), pocos artículos, casi sin enlaces externos.
 4. `inventariofacil.shop` (app) devuelve HTML en `/robots.txt` (soft-404) y puede competir con el sitio.
 
-## 4. Pendientes / ideas (nada de esto se hizo todavía)
-- [ ] Ver en Search Console qué URL es la "bloqueada por robots.txt" y pedir indexación de portada y artículos nuevos (Inspección de URLs > Solicitar indexación).
-- [ ] Confirmar en Sitemaps que `https://www.inventariofacil.site/sitemap.xml` figura como "Correcto".
-- [ ] Cambiar nombre visible: incluir "Inventario Fácil" en título, H1, keywords y datos estructurados de la portada (`src/app/layout.tsx`, `src/config/site.ts`), o alinear la marca. **Requiere OK del usuario.**
+## 4. Hecho el 2026-11-02 (con la extensión de Brave ya conectada)
+- Aviso "bloqueada por robots.txt": ya marca 0 páginas (se resolvió solo). Sitemap "Correcto", 15 URLs descubiertas, última lectura 31/10.
+- Rendimiento 12-31/10: 59 impresiones, 2 clics, posición media 29; aparece por búsquedas de artículos ("inventario inicial", "cierre de caja"), nunca por la marca.
+- Commit `4a6659e`: título "Inventario Fácil | A.C System: ...", descripción, keywords y JSON-LD (alternateName) con "Inventario Fácil". Desplegado en Netlify.
+- Solicitada la indexación de la portada en Search Console (URL en Google, título nuevo pendiente de relectura).
+
+## 5. Pendientes / ideas
+- [ ] Solicitar indexación de los artículos nuevos y de /blog, /sistema-para/* (cuota diaria limitada, ~10 por día).
+- [ ] Enlaces externos: ficha de Play Store, Facebook, Instagram, Google Business (los hace el usuario).
 - [ ] `inventariofacil.shop`: agregar `robots.txt` real y `noindex` (o apuntar al .site). Proyecto aparte; requiere OK.
 - [ ] Enlaces externos: ficha de Play Store, Facebook, Instagram, Google Business.
 - [ ] Medir con búsquedas de intención: "sistema de ventas Paraguay", "control de stock para almacén", no solo la marca.
 - [ ] Decidir si actualizar Next.js (aviso de seguridad de versión 16.4.0). Decisión del usuario; la compilación pide correr `next upgrade --agent=security`, no se hizo.
 
-## 5. Conectar Claude con el navegador (para revisar Search Console)
+## 6. Conectar Claude con el navegador (para revisar Search Console)
 - El usuario usa **Brave** (basado en Chromium) con la extensión "Claude" instalada con acceso completo.
 - No se pudo conectar en la sesión del 2026-11-02: no hay herramientas `mcp__claude-in-chrome__*` y el "native messaging host" de Claude **no está registrado** en el registro de Windows (ni Chrome, ni Brave, ni Chromium).
 - La integración viene en Claude Code 2.1.314 (flag `--chrome`), no es un MCP a instalar. Probar:
@@ -53,6 +58,6 @@ Para retomar: abrir Claude Code en esta carpeta y decir "leé CONTEXTO_PROYECTO.
   3. Si no reconoce Brave, instalar la extensión en Google Chrome.
 - Alternativa sin extensión: pegar capturas de Search Console (URL bloqueada por robots.txt y estado de Sitemaps).
 
-## 6. Otros datos útiles
+## 7. Otros datos útiles
 - Credencial de Git guardada (Git Credential Manager, usuario angeljrcurtido2): el push funciona sin pedir clave.
 - Commits recientes relevantes: `ddb1ea8` "Publicar contenido programado hasta 2026-10-30", `ea73ccf` reintento de compilación en la tanda.
